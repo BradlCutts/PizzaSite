@@ -1,0 +1,63 @@
+﻿@model CartViewModel
+<h1>Checkout</h1>
+<div class="container-fluid" >
+    <form asp-action="checkout" method="post" role="form">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="row" style="background-color:whitesmoke">
+            <div class="col-sm-6" >
+                <label asp-for="cardNumber" class="control-label">Credit Card:</label>
+                <input type="text" asp-for="cardNumber" class="form-control">
+            </div>
+            <div class="col-sm-6">
+                <label asp-for="cardExpirationMonth" class="control-label">Month:</label>
+                <select asp-for="cardExpirationMonth" class="form-control">
+                    @for(int i =1; i <=12; i++)
+                    {
+                        @if(i <= 9)
+                        {
+                            Model.extra = "0" + i.ToString();
+                        }
+                         else
+                        {
+                            Model.extra = i.ToString();
+                        }
+                        <option value="@i">@Model.extra</option>
+                    }
+                </select>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 pull-right">
+                    <label asp-for="cardExpirationYear" class="control-label">Year:</label>
+                    <select asp-for="cardExpirationYear" class="form-control">
+                        @for (int i = 18; i <= 40; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row"  style="background-color:whitesmoke">
+            <div class="col-sm-2" style="padding-top:15px;">
+                <input type="submit" class="btn btn-success" value="Pay Now">
+            </div>
+            <div class="col-sm-2">
+                <h3>Or</h3>
+            </div>
+            <div class="col-sm-2" style="padding-top:15px;">
+                <a asp-controller="cart" asp-action="unpaid" asp-route-id="@Model.OrderId"class="btn btn-info">
+                    Pay In Store
+                </a>
+            </div>
+        </div>
+        
+    </form>
+</div>
+
+
+
+
+
+    
+    <br>
+    

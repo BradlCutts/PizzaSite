@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "_EmployeeLayout";
+}
+@model TrackerViewModel
+
+@if (Model.orders == null)
+{
+    <h2>No Orders Currently</h2>
+
+}
+else
+{
+    foreach (OrderViewModel order in Model.orders)
+    {
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-10">
+                    <h2>Order #: @order.Id</h2>
+                    <table class="table table-hover table-striped" style="background-color: whitesmoke">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Size</th>
+                                <th>Qty.</th>
+                                <th>Details</th>
+                                <th>Status</th>
+                                <th>Change Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (OrderItem item in order.OrderItems)
+                            {
+                                <tr>
+                                    <td>@item.Title</td>
+                                    <td>@item.Size.Title</td>
+                                    <td>@item.Quantity</td>
+                                    <td><a asp-controller="Employee" asp-action="Details" asp-route-id="@item.Id">Details</a></td>
+                                    <td>@item.Status</td>
+                                    <td><a asp-controller="Employee" asp-action="UpdateStatus" class="btn btn-info" asp-route-id="@item.Id">Update</a></td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-2">
+
+                    <h3>Status: @order.percent% Complete </h3>
+                </div>
+            </div>
+        </div>
+
+
+    }
+
+}

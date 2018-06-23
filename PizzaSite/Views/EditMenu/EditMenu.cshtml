@@ -1,0 +1,200 @@
+﻿@{
+    Layout = "_EmployeeLayout";
+}
+@model EditMenuViewModel
+<h1>Edit Menu</h1>
+<div class="container-fluid" style="background-color: Window">
+    <div class="row">
+        <div class="col-sm-8">
+
+
+
+            <h2>Pizzas</h2>
+            <table class="table table-striped menu-table">
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Id</th>
+                        <th class="col-xs-2">Title</th>
+                        <th class="col-xs-2"></th>
+                        <th class="col-xs-2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (MenuItem item in Model.Pizzas)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Title</td>
+                            <td><a asp-controller="EditMenu" asp-action="UpdateItem" asp-route-id="@item.Id" class="btn btn-info">Update</a></td>
+                            <td><a asp-controller="EditMenu" asp-action="RemoveItem" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a asp-controller="EditMenu" asp-action="newMenuItem" asp-route-id ="1" class="btn btn-primary">Create New Pizza</a>
+
+            <h2>Sides</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Id</th>
+                        <th class="col-xs-2">Title</th>
+                        <th class="col-xs-2"></th>
+                        <th class="col-xs-2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (MenuItem item in Model.Sides)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Title</td>
+                            <td><a asp-controller="EditMenu" asp-action="UpdateItem" asp-route-id="@item.Id" class="btn btn-info">Update</a></td>
+                            <td><a asp-controller="EditMenu" asp-action="RemoveItem" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a asp-controller="EditMenu" asp-action="newMenuItem" asp-route-id ="2" class="btn btn-primary">Create New Side</a>
+            <h2>Desserts</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Id</th>
+                        <th class="col-xs-2">Title</th>
+                        <th class="col-xs-2"></th>
+                        <th class="col-xs-2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (MenuItem item in Model.Desserts)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Title</td>
+                            <td><a asp-controller="EditMenu" asp-action="UpdateItem" asp-route-id="@item.Id" class="btn btn-info">Update</a></td>
+                            <td><a asp-controller="EditMenu" asp-action="RemoveItem" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a asp-controller="EditMenu" asp-action="newMenuItem" asp-route-id ="3" class="btn btn-primary">Create New Dessert</a>
+            <h2>Drinks</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Id</th>
+                        <th class="col-xs-2">Title</th>
+                        <th class="col-xs-2"></th>
+                        <th class="col-xs-2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (MenuItem item in Model.Drinks)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Title</td>
+                            <td><a asp-controller="EditMenu" asp-action="UpdateItem" asp-route-id="@item.Id" class="btn btn-info">Update</a></td>
+                            <td><a asp-controller="EditMenu" asp-action="RemoveItem" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a asp-controller="EditMenu" asp-action="newMenuItem" asp-route-id ="4" class="btn btn-primary">Create New Drink</a>
+
+            <h2>Toppings</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Id</th>
+                        <th class="col-xs-2">Title</th>
+                        <th class="col-xs-2"></th>
+                        <th class="col-xs-2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Toppings)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Title</td>
+                            <td><a asp-controller="EditMenu" asp-action="UpdateItem" asp-route-id="@item.Id" class="btn btn-info">Update</a></td>
+                            <td><a asp-controller="EditMenu" asp-action="RemoveTopping" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a asp-controller="EditMenu" asp-action="newTopping" class="btn btn-primary">Create New Topping</a>
+            <h2>Sauces</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Id</th>
+                        <th class="col-xs-2">Title</th>
+                        <th class="col-xs-2"></th>
+                        <th class="col-xs-2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Sauces)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Title</td>
+                            <td><a asp-controller="EditMenu" asp-action="UpdateItem" asp-route-id="@item.Id" class="btn btn-info">Update</a></td>
+                            <td><a asp-controller="EditMenu" asp-action="RemoveSauce" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a asp-controller="EditMenu" asp-action="newSauce" class="btn btn-primary">Create New Sauce</a>
+            <h2>Crusts</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Id</th>
+                        <th class="col-xs-2">Title</th>
+                        <th class="col-xs-2"></th>
+                        <th class="col-xs-2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Crusts)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Title</td>
+                            <td><a asp-controller="EditMenu" asp-action="UpdateItem" asp-route-id="@item.Id" class="btn btn-info">Update</a></td>
+                            <td><a asp-controller="EditMenu" asp-action="RemoveCrust" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a asp-controller="EditMenu" asp-action="newCrust" class="btn btn-primary">Create New Crust</a>
+            <h2>Cuts</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-xs-1">Id</th>
+                        <th class="col-xs-2">Title</th>
+                        <th class="col-xs-2"></th>
+                        <th class="col-xs-2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Cuts)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Title</td>
+                            <td><a asp-controller="EditMenu" asp-action="UpdateItem" asp-route-id="@item.Id" class="btn btn-info">Update</a></td>
+                            <td><a asp-controller="EditMenu" asp-action="RemoveCut" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a asp-controller="EditMenu" asp-action="newCut" class="btn btn-primary">Create New Cut</a>
+        </div>
+    </div>
+</div>

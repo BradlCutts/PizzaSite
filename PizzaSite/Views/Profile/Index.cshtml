@@ -1,0 +1,74 @@
+﻿@model ProfileViewModel
+
+
+<h1>@Model.User.LastName, @Model.User.FirstName</h1>
+<a asp-action="EditProfile" asp-controller="Profile" class="btn btn-default pull-right">Edit Profile</a>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">
+            <h4><strong>Email:</strong> @Model.User.Email</h4>
+        </div>
+        <div class="col">
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <h4><strong>Phone:</strong> @Model.User.PhoneNumber</h4>
+        </div>
+    </div>
+</div>
+
+<h2>Recent Orders</h2>
+<div class="container-fluid">
+    @for (int i = 0; i < 3 && i < Model.RecentItems.Count; i++)
+    {
+        @if (Model.RecentItems[i].Id == 1)
+        {
+            <a asp-controller="Menu" asp-action="Custom"
+               asp-route-id="@Model.RecentItems[i].Id">
+                <div class="col-sm-4 col-lg-4 col-md-4">
+
+                    <div class="thumbnail">
+
+                        <img src="@Model.RecentItems[i].ThumbnailUrl" alt="">
+                        <div class="caption">
+
+                            <h3>
+                                @Model.RecentItems[i].Title
+
+                            </h3>
+                            <p>@Model.RecentItems[i].ShortDescription</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        }
+        else
+        {
+            <a asp-controller="Menu" asp-action="Details"
+               asp-route-id="@Model.RecentItems[i].Id">
+                <div class="col-sm-4 col-lg-4 col-md-4">
+
+                    <div class="thumbnail">
+
+                        <img src="@Model.RecentItems[i].ThumbnailUrl" alt="">
+                        <div class="caption">
+
+                            <h3>
+                                @Model.RecentItems[i].Title
+
+                            </h3>
+                            <p>@Model.RecentItems[i].ShortDescription</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+
+
+
+    }
+
+</div>

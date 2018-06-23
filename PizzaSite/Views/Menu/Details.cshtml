@@ -1,0 +1,108 @@
+﻿@model DetailViewModel
+
+<div class="container-fluid thumbnail">
+    <div class="row">
+        <div class="col-sm-6">
+            <img alt="@Model.menuItem.Title" src="@Model.menuItem.ImageUrl" class="img-thumbnail">
+        </div>
+        <div class="col-sm-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <h2>@Model.menuItem.Title</h2>
+                </div>
+                <div class="row">
+                    <h4>@Model.menuItem.LongDescription</h4>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <table class=" table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Size</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Size size in Model.menuItem.Sizes)
+                                {
+                                    <tr>
+                                        <td>@size.Title</td>
+                                        <td>$@size.Price</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<div class="container-fluid">
+    <form asp-action="Details" method="post" role="form">
+        @Html.HiddenFor(model => model.test, new { id = "test" })
+        @Html.HiddenFor(model => model.menuItem, new { id = "menuItem" })
+        <div class="row">
+            <div class="col-sm-6">
+                <label asp-for="Quantity"></label>
+
+                <input asp-for="Quantity" class="form-control" min="1" value="1" />
+                <span asp-validation-for="Quantity" class="text-danger alert-danger"></span>
+            </div>
+            <div class="col-sm-6">
+                <label asp-for="SizeId" class="control-label">Size</label>
+                <select asp-for="SizeId" class="form-control">
+                    @foreach (Size size in Model.menuItem.Sizes)
+                    {
+                        <option value="@size.Id">@size.Title</option>
+
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label asp-for="CutId" class="control-label">Cut</label>
+                <select asp-for="CutId" class="form-control">
+                    @foreach (Cut cut in Model.menuItem.Cuts)
+                    {
+                        <option value="@cut.Id">@cut.Title</option>
+
+                    }
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label asp-for="CrustId" class="control-label">Crust</label>
+                <select asp-for="CrustId" class="form-control">
+                    @foreach (Crust crust in Model.menuItem.Crusts)
+                    {
+                        <option value="@crust.Id">@crust.Title</option>
+
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <label asp-for="SpecialInstructions" class="col-md-2 control-label"></label>
+
+                <textarea asp-for="SpecialInstructions" class="form-control"></textarea>
+            </div>
+            <div class="col-sm-12" style="padding-top:15px;" >
+                
+                <input type="submit" class="btn btn-primary pull-right" value="Add to Cart" />
+                
+            </div>
+        </div>
+    </form>
+</div>
+
+
+

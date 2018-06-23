@@ -1,0 +1,203 @@
+﻿@{
+    Layout = "_EmployeeLayout";
+}
+@model MenuItemViewModel
+<h1>@Model.Title</h1>
+
+<h2>Details</h2>
+<table class="table table-striped" style="background-color:Window">
+    <tr>
+        <th>Title</th>
+        <td>@Model.Title</td>
+        <td><a asp-controller="EditMenu" asp-action="updateItemTitle" class="btn btn-default">Edit</a></td>
+    </tr>
+    <tr>
+        <th>Short Description</th>
+        <td>@Model.ShortDescription</td>
+        <td><a asp-controller="EditMenu" asp-action="updateItemShortDescription" class="btn btn-default">Edit</a></td>
+    </tr>
+    <tr>
+        <th>Long Description</th>
+        <td>@Model.LongDescription</td>
+        <td><a asp-controller="EditMenu" asp-action="updateItemLongDescription" class="btn btn-default">Edit</a></td>
+    </tr>
+    <tr>
+        <th>Image Url</th>
+        <td>@Model.ImageUrl</td>
+        <td><a asp-controller="EditMenu" asp-action="updateItemImageUrl" class="btn btn-default">Edit</a></td>
+    </tr>
+    <tr>
+        <th>Thumbnail Url</th>
+        <td>@Model.ThumbnailUrl</td>
+        <td><a asp-controller="EditMenu" asp-action="updateItemThumbnail" class="btn btn-default">Edit</a></td>
+    </tr>
+    <tr>
+        <th>Type</th>
+        <td>@Model.Type</td>
+        <td><a asp-controller="EditMenu" asp-action="updateItemType" class="btn btn-default">Edit</a></td>
+    </tr>
+</table>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-3">
+            @if (Model.Toppings.Count > 0)
+            {
+                <table class="table table-striped" >
+                    <tr>
+                        <th class="col-xs-1">Id</th>
+                        <th class="col-xs-3">Topping</th>
+                        <th class="col-xs-1"></th>
+                    </tr>
+                    @foreach (ToppingVm topping in Model.Toppings)
+                    {
+                        var rowId = "Topping" + topping.topping.Id.ToString();
+                    
+                    <tr id="@rowId">
+                        <td>@topping.topping.Id</td>
+                        <td>@topping.topping.Title</td>
+                        <td><button class="btn btn-danger" onclick="removeTopping(@topping.topping.Id)" >Remove</button></td>
+                    </tr>
+                    }
+                </table>
+            }
+            <a asp-controller="EditMenu" asp-action="addToppingToItem" asp-route-id="@Model.Id" class="btn btn-primary">Add Topping</a>
+        </div>
+        <div class="col-xs-2">
+
+        </div>
+        <div class="col-xs-3">
+            @if (Model.Sauces.Count > 0)
+            {
+                <table class="table table-striped">
+                    <tr>
+                        <th class="col-xs-1">Id</th>
+                        <th class="col-xs-3">Sauce</th>
+                        <th class="col-xs-1"></th>
+                    </tr>
+                    @foreach (Sauce sauce in Model.Sauces)
+                    {
+                        <tr>
+                            <td>@sauce.Id</td>
+                            <td>@sauce.Title</td>
+                            @{ 
+                                var Link = Url.RouteUrl("TwoIds",
+                                    new
+                                    {
+                                        controller = "EditMenu",
+                                        Action = "RemoveSauceFromItem",
+                                        id1 = Model.Id,
+                                        id2 = sauce.Id
+                                    });
+                            }
+                            <td><a href="@Link" class="btn btn-danger">Remove</a></td>
+                        </tr>
+                    }
+                </table>
+            }
+            <a asp-controller="EditMenu" asp-action="addSauceToItem" asp-route-id="@Model.Id" class="btn btn-primary">Add Sauce</a>
+        </div>
+    </div>
+    <br/> 
+    <br/>
+    <div class="row">
+        <div class="col-xs-3">
+            @if (Model.Crusts.Count > 0)
+            {
+                <table class="table table-striped">
+                    <tr>
+                        <th class="col-xs-1">Id</th>
+                        <th class="col-xs-3">Crust</th>
+                        <th class="col-xs-1"></th>
+                    </tr>
+                    @foreach (Crust crust in Model.Crusts)
+                    {
+                    <tr>
+                        <td>@crust.Id</td>
+                        <td>@crust.Title</td>
+                        @{
+                            var Link = Url.RouteUrl("TwoIds",
+                                new
+                                {
+                                    controller = "EditMenu",
+                                    Action = "RemoveCrustFromItem",
+                                    id1 = Model.Id,
+                                    id2 = crust.Id
+                                });
+                        }
+                        <td><a href="@Link" class="btn btn-danger">Remove</a></td>
+                    </tr>
+                    }
+                </table>
+            }
+            <a asp-controller="EditMenu" asp-action="addCrustToItem" asp-route-id="@Model.Id" class="btn btn-primary">Add Crust</a>
+        </div>
+        <div class="col-xs-2">
+        </div>
+        <div class="col-xs-3">
+            @if (Model.Cuts.Count > 0)
+            {
+                <table class="table table-striped">
+                    <tr>
+                        <th class="col-xs-1">Id</th>
+                        <th class="col-xs-3">Cut</th>
+                        <th class="col-xs-1"></th>
+                    </tr>
+                    @foreach (Cut cut in Model.Cuts)
+                    {
+                    <tr>
+                        <td>@cut.Id</td>
+                        <td>@cut.Title</td>
+                        @{
+                            var Link = Url.RouteUrl("TwoIds",
+                                new
+                                {
+                                    controller = "EditMenu",
+                                    Action = "RemoveCutFromItem",
+                                    id1 = Model.Id,
+                                    id2 = cut.Id
+                                });
+                        }
+                        <td><a href="@Link" class="btn btn-danger">Remove</a></td>
+                    </tr>
+                    }
+                </table>
+            }
+            <a asp-controller="EditMenu" asp-action="addCutToItem" asp-route-id="@Model.Id" class="btn btn-primary">Add Cut</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function removeTopping(toppingId) {
+        var itemId = @Model.Id;
+       
+        debugger;
+        $.ajax({
+            url: "/UpdateMenu/MenuItems/" + toppingId + "/Toppings/" + itemId,
+            type: 'DELETE',
+            //dataType: 'application/json',
+            success: function (data, status, xhr) {
+                debugger;
+                var trId = "#Topping" + toppingId;
+                $(trId).remove();
+            },
+            error: function (data, status, error) {
+                debugger;
+                alert("failed to remove");
+            }
+        });
+
+    }
+    function removeSauce(sauceId) {
+        var itemId = @Model.Id;
+
+    }
+    function removeCrust(crustId) {
+        var itemId = @Model.Id;
+
+    }
+    function removeCut(cutId) {
+        var itemId = @Model.Id;
+
+    }
+</script>

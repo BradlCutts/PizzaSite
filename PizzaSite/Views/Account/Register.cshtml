@@ -1,0 +1,76 @@
+﻿@model RegisterViewModel
+<h1>Register</h1>
+<form asp-controller="Account" asp-action="Register" method="post">
+    <div class="container-fluid" style="background-color:Window">
+        
+           
+           <!-- add a div to alert that passwords didn't match--> 
+               
+          
+
+        <div class="row">
+            <div class="col-sm-2">
+                <Label asp-for="@Model.customer.FirstName">First Name</Label>
+
+            </div>
+            <div class="col-cm-4">
+                <input type="text" asp-for="@Model.customer.FirstName" class="form-control" />
+                <span asp-validation-for="@Model.customer.FirstName" class="text-danger alert-danger"></span>
+            </div>
+            <div class="col-sm-2">
+                <Label asp-for="@Model.customer.LastName">Last Name</Label>
+            </div>
+            <div class="col-cm-4">
+                <input asp-for="@Model.customer.LastName" type="text" class="form-control" />
+                <span asp-validation-for="@Model.customer.LastName" class="text-danger alert-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <Label asp-for="@Model.customer.Email">Email Adress</Label>
+            </div>
+            <div class="col-cm-4">
+                <input asp-for="@Model.customer.Email" type="text" class="form-control" />
+                <span asp-validation-for="@Model.customer.Email" class="text-danger alert-danger"></span>
+            </div>
+            <div class="col-sm-2">
+                <Label asp-for="@Model.customer.Password">Password</Label>
+            </div>
+            <div class="col-cm-4">
+                <input asp-for="@Model.customer.Password" type="password" class="form-control" />
+                <span asp-validation-for="@Model.customer.Password" class="text-danger alert-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <Label asp-for="@Model.passConfirm">Confirm Password</Label>
+            </div>
+            <div class="col-cm-4">
+                <input asp-for="@Model.passConfirm" type="password" class="form-control" />
+                <span asp-validation-for="@Model.passConfirm" class="text-danger alert-danger"></span>
+            </div>
+            <div class="col-sm-2">
+                <Label asp-for="@Model.customer.PhoneNumber">Phone Number</Label>
+            </div>
+            <div class="col-cm-4">
+                <input asp-for="@Model.customer.PhoneNumber type=" text" class="form-control" />
+                <span asp-validation-for="@Model.customer.PhoneNumber" class="text-danger alert-danger"></span>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <Label asp-for="@Model.customer.Birthdate">Birthdate</Label>
+            </div>
+            <div class="col-cm-4">
+                <input asp-for="@Model.customer.Birthdate" type="text" class="form-control" />
+                <span asp-validation-for="@Model.customer.Birthdate" class="text-danger alert-danger"></span>
+            </div>
+            <div class="col-sm-6" style="padding-top:15px;">
+                <input type="submit" class="btn btn-primary" value="Register">
+
+
+            </div>
+        </div>
+    </div>
+    </form>

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/site.css" />
+    <script type="text/javascript" src="~/js/JavaScript.js"></script>
+
+</head>
+<body>
+    @*<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-controller="Employee" asp-action="Index" class="navbar-brand">Pizza Planet</a></li>
+                    <li><a asp-controller="Employee" asp-action="Orders">Orders</a></li>
+                    <li><a asp-controller="Employee" asp-action="TakeOrder">Take Order</a></li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li><a asp-controller="Admin" asp-action="ManageEmployees">Manage Employees</a></li>
+                        <li><a asp-controller="EditMenu" asp-action="EditMenu">Edit Menu</a></li>
+                    }
+
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a asp-controller="Account" asp-action="Logout">Log out</a></li>
+
+                </ul>
+
+
+            </div>
+        </div>
+    </nav>
+    <div class=" container body-content">
+        <div class="row">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

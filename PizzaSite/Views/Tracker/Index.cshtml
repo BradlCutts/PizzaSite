@@ -1,0 +1,12 @@
+﻿@model TrackerViewModel
+
+<h2>Enter an order number to look up.</h2>
+<div class="container-fluid">
+    <div class="row">
+        <form asp-action="Report" method="post" role="form">
+            <label asp-for=" @Model.OrderId">Order Id:</label>
+            <input asp-for="@Model.OrderId" type="number">
+            <input type="submit" class="btn btn-primary">
+        </form>
+    </div>
+</div>

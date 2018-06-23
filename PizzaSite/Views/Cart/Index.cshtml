@@ -1,0 +1,79 @@
+﻿@model CartViewModel
+
+<h1>My Cart:</h1>
+<br>
+
+<div>
+    @if (Model.isEmpty)
+    {
+        <h2>Your cart is empty</h2>
+    }
+    else
+    {
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6 ">
+                    @foreach (OrderItem orderItem in Model.orderItems)
+                    {
+                        <div class="container-fluid thumbnail" >
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <img src="@orderItem.ThumbnailUrl" alt="@orderItem.Title" class="img-thumbnail">
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h3>@orderItem.Title</h3>
+                                            </div>
+                                            <div class="col-sm-6 text-center">
+                                                
+                                                    <button type="button" class="btn btn-secondary">Edit</button>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 text-center">
+                                                QTY: @orderItem.Quantity
+                                            </div>
+                                            <div class="col-sm-6 text-center">
+                                                <a asp-controller="Cart" asp-action="removeItem"
+                                                   asp-route-id="@orderItem.Id" class="btn btn-danger">
+                                                    Delete
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                    <a asp-controller="Cart" asp-action="removeAll" asp-route-id="@Model.OrderId" class="btn btn-danger">
+                    Delete All
+                    </a>
+                </div>
+                <div class="col-sm-6">
+                    <h3>Price: @Model.Price</h3>
+                    <h3>Tax: @Model.Tax</h3>
+                    <h2>Total: @Model.Total</h2>
+                    <form asp-action="Index" method="post" role="form">
+                        @Html.HiddenFor(model => model.OrderId, new { id = "OrderId" })
+                        
+                        <input type="submit" class="btn btn-warning btn-block" value="Checkout">
+                    
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+
+    }
+
+
+
+</div>
+
+
+
+

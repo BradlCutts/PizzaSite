@@ -1,0 +1,63 @@
+﻿@model TrackerViewModel
+
+<h1>Order Report</h1>
+
+<div class="container-fluid">
+    <div class="row">
+        <form asp-action="Report" method="post" role="form">
+            <label asp-for=" @Model.OrderId">Order Id:</label>
+            <input asp-for="@Model.OrderId" type="number">
+            <input type="submit" class="btn btn-primary">
+        </form>
+    </div>
+    <div class="row">
+        @if (Model.isEmpty)
+        {
+            <h2>That order Id doesn't exist.</h2>
+
+        }
+        else
+        {
+            foreach (OrderViewModel order in Model.orders)
+            {
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h2>Order #: @order.Id</h2>
+                            <table class="table table-hover table-striped" style="background-color: whitesmoke">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Size</th>
+                                        <th>Qty.</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (OrderItem item in order.OrderItems)
+                                    {
+                                        <tr>
+                                            <td>@item.Title</td>
+                                            <td>@item.Size.Title</td>
+                                            <td>@item.Quantity</td>
+                                            <td>@item.Status</td>
+                                        </tr>
+
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-sm-2">
+
+                            <h3>Status: @order.percent% Complete </h3>
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+
+        }
+
+    </div>
+</div>

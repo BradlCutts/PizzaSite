@@ -1,0 +1,73 @@
+﻿body 
+{
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-image: url('/Images/Logo.jpg');
+    background-repeat: no-repeat;
+}
+
+.body-content 
+{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.detail-image
+{
+    height: 800px;
+    width: 600px;
+}
+
+* {
+    box-sizing: border-box
+}
+
+.pull-down{
+    padding-top: 15px;
+}
+
+.img-thumb
+{
+    
+}
+
+.carousel {
+    position: relative;
+}
+
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-item {
+    position: relative;
+    display: none;
+    align-items: center;
+    width: 100%;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+    .carousel-item.active,
+    .carousel-item-next,
+    .carousel-item-prev {
+        display: block;
+    }
+
+.carousel-item-next,
+.carousel-item-prev {
+    position: absolute;
+    top: 0;
+}
+
+.menu-table .title-width
+{
+    width: 200px;
+}
+.menu-table .id-width
+{
+    width: 80px;
+}
+

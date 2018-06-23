@@ -1,0 +1,109 @@
+﻿@using PizzaSite.ViewModels
+@model MenuViewModel
+
+<h1><strong>Menu</strong></h1>
+<br>
+<h2>Pizzas</h2>
+
+@foreach (var MenuItem in Model.MenuItems)
+{
+    @if (MenuItem.Type == "Pizza")
+    { string action;
+        @if (MenuItem.Title == "Custom Creation")
+        {
+            action = "Custom";
+        }
+        else
+        {
+            action = "Details";
+        }
+                <a asp-controller="Menu" asp-action="@action"
+                   asp-route-id="@MenuItem.Id">
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="@MenuItem.ThumbnailUrl" style="height: 235px;
+width: 350px;" alt="" >
+                            <div class="caption">
+                                <h3> @MenuItem.Title</h3>
+                                <p>@MenuItem.ShortDescription</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+     }
+ }
+                <h2>Sides</h2>
+                @foreach (var menuItem in Model.MenuItems)
+                {
+                    @if (menuItem.Type == "Side")
+                    {
+                        <a asp-controller="Menu" asp-action="Details"
+                           asp-route-id="@menuItem.Id">
+                            <div class="col-sm-4 col-lg-4 col-md-4">
+
+                                <div class="thumbnail">
+
+                                    <img src="@menuItem.ThumbnailUrl" alt="" style="height: 235px;width: 350px;" >
+                                    <div class="caption">
+
+                                        <h3>
+                                            @menuItem.Title
+
+                                        </h3>
+                                        <p>@menuItem.ShortDescription</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+                <h2>Desserts</h2>
+                @foreach (var menuItem in Model.MenuItems)
+                {
+                    @if (menuItem.Type == "Dessert")
+                    {
+                        <a asp-controller="Menu" asp-action="Details"
+                           asp-route-id="@menuItem.Id">
+                            <div class="col-sm-4 col-lg-4 col-md-4">
+
+                                <div class="thumbnail">
+
+                                    <img src="@menuItem.ThumbnailUrl" alt="" style="height: 235px;width: 350px;">
+                                    <div class="caption">
+
+                                        <h3>
+                                            @menuItem.Title
+
+                                        </h3>
+                                        <p>@menuItem.ShortDescription</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+                <h2>Drinks</h2>
+                @foreach (var menuItem in Model.MenuItems)
+                {
+                    @if (menuItem.Type == "Drink")
+                    {
+                        <a asp-controller="Menu" asp-action="Details"
+                           asp-route-id="@menuItem.Id">
+                            <div class="col-sm-4 col-lg-4 col-md-4">
+
+                                <div class="thumbnail">
+
+                                    <img src="@menuItem.ThumbnailUrl" alt="" style="height: 235px;width: 350px;">
+                                    <div class="caption">
+
+                                        <h3>
+                                            @menuItem.Title
+
+                                        </h3>
+                                        <p>@menuItem.ShortDescription</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
